@@ -1,0 +1,16 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]="defaultHref"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      {{ data?.DETAIL_TEXT?.V }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+   {{session | json }}
+  this is user deails: {{routeId}}
+  <app-footer-car-moving></app-footer-car-moving>
+
+</ion-content>

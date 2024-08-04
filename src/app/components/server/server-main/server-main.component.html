@@ -1,0 +1,10 @@
+<app-cockpit
+        (serverCreated)="onServerAdded($event)"
+        (serverBlueCreated)="onBlueprintAdded($event)">
+</app-cockpit>
+
+<app-server-element
+*ngFor="let e of serverElements"
+[srvElement]="e">
+  {{ e | json }}
+</app-server-element>

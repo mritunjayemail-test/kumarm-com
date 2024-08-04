@@ -1,0 +1,414 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="star"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="w3-padding" appEdit [allowEdit]="data?.EDIT" id="RESUME_TEXT.V">
+      {{ data?.RESUME_TEXT?.V }}
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="12" size-lg="10">
+        <ion-grid>
+          <ion-row class="ion-justify-content-center">
+            <!-- Rusume Image -->
+            <ion-col size="12" size-md="12" size-lg="4">
+              <ion-card>
+                <div class="w3-display-container">
+                  <span *ngIf="data?.EDIT" class="w3-display-right">
+                    <app-image-popmodal id="RESUME.image" [icontext]="false" [roundCropper]="false"
+                      [aspectRatioWH]="4/4" [resizeToWidth]="1024" [resizeToHeight]="0">
+                    </app-image-popmodal>
+                  </span>
+                  <div class="w3-display-bottomleft w3-container">
+                    <h4> <b class="w3-teal w3-text-white w3-padding" appEdit [allowEdit]="data?.EDIT"
+                        (showEvent)="addItem($event)" id="HOME.NAME.V">
+                        {{data?.HOME?.NAME.V || 'Your Name' }}
+                      </b>
+                    </h4>
+                  </div>
+
+                  <ion-img [alt]="data?.HOME?.NAME?.V" [src]="data?.RESUME?.image"></ion-img>
+                </div>
+              </ion-card>
+            </ion-col>
+            <!-- Rusume Image -->
+            <!-- Rusume Main information -->
+            <ion-col size="12" size-md="12" size-lg="7" class="ion-align-self-center ion-no-padding">
+              <ion-card>
+                <div class="ion-text-center">
+                  <ion-card-header color="primary">
+                    <!-- no modification on name -->
+                    <ion-card-title>{{data?.HOME?.NAME.V || 'Your Name' }}</ion-card-title>
+                    <!-- no modification on name -->
+
+                    <!-- list with some additional info -->
+                    <ng-container *ngFor="let ele of data?.RESUME?.PERSONAL; let i=index; last as isLast">
+                      <ion-card-subtitle appEdit [allowEdit]="data?.EDIT" (showEvent)="addItem($event)"
+                        update="RESUME.PERSONAL.{{i}}" id="RESUME.PERSONAL.{{i}}.V">
+                        {{ele?.V }}
+                      </ion-card-subtitle>
+                    </ng-container>
+                    <!-- list with some additional info -->
+                  </ion-card-header>
+                </div>
+                <!-- <ion-card-header>
+                  <ion-card-title>Objective</ion-card-title>
+                </ion-card-header> -->
+                <ng-container *ngFor="let ele of data?.RESUME?.DETAILS; let i=index; last as isLast">
+                  <ion-card-header>
+                    <ion-card-subtitle appEdit [allowEdit]="data?.EDIT" (showEvent)="addItem($event)"
+                      update="RESUME.DETAILS.{{i}}" id="RESUME.DETAILS.{{i}}.V">
+                      {{ele?.V}}
+                    </ion-card-subtitle>
+                  </ion-card-header>
+                </ng-container>
+              </ion-card>
+            </ion-col>
+            <!-- Rusume Main information -->
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+
+
+      <ion-col size="12" size-md="12" size-lg="3">
+        <ng-container *ngFor="let element of data?.RESUME?.SKILL_LEVEL;
+        let i=index; last as isLasti">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title class="w3-large">
+                <ion-icon name="globe-outline" aria-hidden="true" class="w3-text-teal"></ion-icon>
+                <span class="w3-padding" appEdit [allowEdit]="data?.EDIT" (showEvent)="addItem($event)"
+                  update="RESUME.SKILL_LEVEL.{{i}}" id="RESUME.SKILL_LEVEL.{{i}}.SKILL_MAIN.V">
+                  {{element?.SKILL_MAIN?.V}}
+                </span>
+              </ion-card-title>
+            </ion-card-header>
+            <ng-container *ngFor="let ele of element.SKILL_DETAIL; let j=index; last as isLastj">
+              <ion-card-content>
+                <p appEdit [allowEdit]="data?.EDIT" (showEvent)="addItem($event)"
+                  update="RESUME.SKILL_LEVEL.{{i}}.SKILL_DETAIL.{{j}}"
+                  id="RESUME.SKILL_LEVEL.{{i}}.SKILL_DETAIL.{{j}}.lang.V">
+                  {{ele?.lang?.V}}
+                </p>
+                <div class="w3-light-grey w3-round-xlarge w3-small">
+                  <div class="w3-container w3-center w3-round-xlarge w3-teal" [style.width]="ele.percent">
+                    <span appEdit [allowEdit]="data?.EDIT" id="RESUME.SKILL_LEVEL.{{i}}.SKILL_DETAIL.{{j}}.percent">
+                      {{ele?.percent}}
+                    </span>
+                  </div>
+                </div>
+              </ion-card-content>
+            </ng-container>
+          </ion-card>
+        </ng-container>
+        <!-- badge -->
+        <ng-container *ngFor="let element of data?.RESUME?.BADGES_CARD; let i=index; last as isLasti">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title appEdit [allowEdit]="data?.EDIT"
+            (showEvent)="addItem($event)"
+            update="RESUME.BADGES_CARD.{{i}}"
+            id="RESUME.BADGES_CARD.{{i}}.MAIN.V">{{element?.MAIN?.V}}</ion-card-title>
+          </ion-card-header>
+          <ion-list>
+            <ng-container *ngFor="let ele of element.DATA; let j=index; last as isLastj">
+            <ion-item>
+              <ion-label  appEdit [allowEdit]="data?.EDIT"
+              (showEvent)="addItem($event)"
+              update="RESUME.BADGES_CARD.{{i}}.DATA.{{j}}"
+              id="RESUME.BADGES_CARD.{{i}}.DATA.{{j}}.text.V">{{ele?.text?.V }}</ion-label>
+
+              <ion-badge><span appEdit [allowEdit]="data?.EDIT"
+              (showEvent)="addItem($event)"
+              update="RESUME.BADGES_CARD.{{i}}.DATA.{{j}}"
+              id="RESUME.BADGES_CARD.{{i}}.DATA.{{j}}.value">{{ ele?.value }}</span></ion-badge>
+            </ion-item>
+          </ng-container>
+          </ion-list>
+        </ion-card>
+        </ng-container>
+        <!-- badge -->
+
+        <!-- RANGE_LEVEL -->
+        <!-- <ng-container *ngFor="let element of data?.RESUME?.RANGE_LEVEL; let i=index; last as isLasti">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>
+                <ion-icon name="globe-outline" aria-hidden="true" class="w3-text-teal"></ion-icon>
+                <span class="w3-padding" appEdit [allowEdit]="data?.EDIT" (showEvent)="addItem($event)"
+                  update="RESUME.RANGE_LEVEL.{{i}}"
+                  id="RESUME.RANGE_LEVEL.{{i}}.RANGE_MAIN.V">{{element?.RANGE_MAIN?.V}}</span>
+              </ion-card-title>
+              <ion-range aria-label="Custom range" [value]="50" (ionChange)="onIonChange(i, $event)"
+                [pin]="true"></ion-range>
+            </ion-card-header>
+          </ion-card>
+        </ng-container> -->
+
+        <!-- RANGE_LEVEL -->
+        <!-- checkbox -->
+        <!-- <ng-container *ngFor="let element of data?.RESUME?.CHECKBOX_CARD; let i=index; last as isLasti">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>{{element?.MAIN?.V}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-list>
+                <ng-container *ngFor="let ele of element.DATA; let j=index; last as isLastj">
+                  <ion-item>
+                    <ion-checkbox [checked]="ele?.value">{{ele.text.V}}</ion-checkbox>
+                  </ion-item>
+                </ng-container>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+        </ng-container> -->
+        <!-- checkbox -->
+
+        <!-- Certification -->
+        <!-- <ion-card>
+          <ion-card-header>
+            <ion-card-title>Certification</ion-card-title>
+            <ion-card-subtitle>International Certification</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-thumbnail slot="start">
+                  <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+                </ion-thumbnail>
+                <ion-label>Item</ion-label>
+              </ion-item>
+
+              <ion-item>
+                <ion-thumbnail slot="start">
+                  <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+                </ion-thumbnail>
+                <ion-label>Item</ion-label>
+              </ion-item>
+
+              <ion-item>
+                <ion-thumbnail slot="start">
+                  <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+                </ion-thumbnail>
+                <ion-label>Item</ion-label>
+              </ion-item>
+
+              <ion-item lines="none">
+                <ion-thumbnail slot="start">
+                  <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+                </ion-thumbnail>
+                <ion-label>Item</ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card> -->
+        <!-- Certification -->
+
+              <!-- segment -->
+              <!-- <ion-card>
+                <ion-list>
+                  <ion-item>
+                    <ion-segment value="custom">
+                      <ion-segment-button value="custom">
+                        <ion-label>Custom</ion-label>
+                      </ion-segment-button>
+                      <ion-segment-button value="segment">
+                        <ion-label>Segment</ion-label>
+                      </ion-segment-button>
+                      <ion-segment-button value="buttons">
+                        <ion-label>Buttons</ion-label>
+                      </ion-segment-button>
+                    </ion-segment>
+                    <br>
+                  </ion-item>
+                  </ion-list>
+              </ion-card> -->
+              <!-- segment -->
+
+            <!-- accordion -->
+            <!-- <ion-card>
+            <ion-list>
+            <ion-accordion-group>
+              <ion-accordion value="first">
+                <ion-item slot="header" color="light">
+                  <ion-label>First Accordion</ion-label>
+                </ion-item>
+                <div class="ion-padding" slot="content">First Content</div>
+              </ion-accordion>
+              <ion-accordion value="second">
+                <ion-item slot="header" color="light">
+                  <ion-label>Second Accordion</ion-label>
+                </ion-item>
+                <div class="ion-padding" slot="content">Second Content</div>
+              </ion-accordion>
+              <ion-accordion value="third">
+                <ion-item slot="header" color="light">
+                  <ion-label>Third Accordion</ion-label>
+                </ion-item>
+                <div class="ion-padding" slot="content">Third Content</div>
+              </ion-accordion>
+            </ion-accordion-group>
+          </ion-list>
+            </ion-card> -->
+          <!-- accordion -->
+      </ion-col>
+
+      <ion-col size="12" size-md="12" size-lg="7">
+        <!-- start -->
+        <ng-container *ngFor="let element of data?.RESUME?.EXPERIENCE_CARD; let i=index; last as isLast">
+
+          <ion-card class="no-border1">
+            <ion-card color="tertiary">
+              <h4><span class="w3-padding" appEdit [allowEdit]="data?.EDIT" (showEvent)="addItem($event)"
+                  update="RESUME.EXPERIENCE_CARD.{{i}}" id="RESUME.EXPERIENCE_CARD.{{i}}.MAIN.V">
+                  {{ element?.MAIN?.V }}</span></h4>
+            </ion-card>
+
+            <ng-container *ngFor="let e1 of element.DATA; let j=index; last as isLastj">
+
+              <ion-card class="no-border1">
+                <ng-container *ngFor="let e2 of e1.sub_head; let k=index; last as isLastk">
+                  <ion-card-header>
+                    <ion-card-title class="w3-large" color="danger">
+                      <ion-icon name="briefcase-outline" aria-hidden="true" class="w3-text-teal"></ion-icon>
+                      <span class="w3-padding" appEdit [allowEdit]="data?.EDIT" (showEvent)="addItem($event)"
+                        update="RESUME.EXPERIENCE_CARD.{{i}}.DATA.{{j}}"
+                        id="RESUME.EXPERIENCE_CARD.{{i}}.DATA.{{j}}.sub_head.{{k}}.V">{{e2?.V}}</span>
+                    </ion-card-title>
+                  </ion-card-header>
+                </ng-container>
+                <!-- period -->
+                <ng-container *ngFor="let e of e1.period; let k=index; last as isLastk">
+                  <ion-item lines="none">
+                    <ion-icon aria-hidden="true"></ion-icon>
+                    <h6 class="w3-text-teal">
+                      <ion-icon name="calendar-outline" aria-hidden="true" class="w3-text-teal"></ion-icon>
+                      <span class="w3-padding" appEdit [allowEdit]="data?.EDIT" (showEvent)="addItem($event)"
+                        update="RESUME.EXPERIENCE_CARD.{{i}}.DATA.{{j}}.period.{{k}}"
+                        id="RESUME.EXPERIENCE_CARD.{{i}}.DATA.{{j}}.period.{{k}}.V">{{e?.V}}</span>
+                    </h6>
+                  </ion-item>
+                </ng-container>
+                <!-- period -->
+
+                <ng-container *ngFor="let e3 of e1.sub_test; let k=index; last as isLastk">
+                  <p class="w3-padding-small" appEdit [allowEdit]="data?.EDIT" (showEvent)="addItem($event)"
+                    update="RESUME.EXPERIENCE_CARD.{{i}}.DATA.{{j}}.sub_test.{{k}}"
+                    id="RESUME.EXPERIENCE_CARD.{{i}}.DATA.{{j}}.sub_test.{{k}}.V">
+                    {{e3?.V}}</p>
+                  <!-- <p>
+                    <span *ngIf="data?.EDIT">
+                      <app-delete-data id="RESUME.EXPERIENCE_CARD.{{i}}.DATA.{{j}}.sub_test.{{k}}"></app-delete-data>
+                      <app-copy-data id="RESUME.EXPERIENCE_CARD.{{i}}.DATA.{{j}}.sub_test.{{k}}"></app-copy-data>
+                    </span>
+                  </p> -->
+                </ng-container>
+                <ng-container *ngFor="let ee of e1?.grid; let k=index; last as isLastk">
+                    <ion-grid>
+                    <ion-row>
+                      <ng-container *ngFor="let e1 of ee; let l=index; last as isLastk">
+                        <ion-col appEdit [allowEdit]="data?.EDIT" (showEvent)="addItem($event)"
+                          update="RESUME.EXPERIENCE_CARD.{{i}}.DATA.{{j}}.grid.{{k}}.{{l}}"
+                          id="RESUME.EXPERIENCE_CARD.{{i}}.DATA.{{j}}.grid.{{k}}.{{l}}.V">{{e1.V}}
+                        </ion-col>
+                      </ng-container>
+                    </ion-row>
+                  </ion-grid>
+                </ng-container>
+              </ion-card>
+            </ng-container>
+          </ion-card>
+        </ng-container>
+
+
+
+
+
+      </ion-col>
+
+
+
+    </ion-row>
+  </ion-grid>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" #fab>
+    <ion-fab-button>
+      <ion-icon name="share-social"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="vimeo" (click)="openSocial('Vimeo', fab)">
+        <ion-icon name="logo-vimeo"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="instagram" (click)="openSocial('Instagram', fab)">
+        <ion-icon name="logo-instagram"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="twitter" (click)="openSocial('Twitter', fab)">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="facebook" (click)="openSocial('Facebook', fab)">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+
+  <!-- <ion-fab slot="fixed" horizontal="center" vertical="center">
+    <ion-fab-button color="secondary">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="primary">
+        <ion-icon name="chevron-up"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+    <ion-fab-list side="end">
+      <ion-fab-button color="tertiary">
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="success">
+        <ion-icon name="chevron-forward"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+    <ion-fab-list side="bottom">
+      <ion-fab-button color="warning">
+        <ion-icon name="chevron-down"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+    <ion-fab-list side="start">
+      <ion-fab-button color="danger">
+        <ion-icon name="chevron-back"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="dark">
+        <ion-icon name="chevron-back"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab> -->
+
+  <ion-fab *ngIf="identity" slot="fixed" vertical="top" horizontal="center">
+    <ion-fab-button size="small">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="start">
+      <ion-fab-button color="danger" (click)="copy_data()" [id]="identity">
+        <ion-icon name="copy"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+    <ion-fab-list side="end">
+      <ion-fab-button color="warning" (click)="delete_data()" [id]="identity">
+        <ion-icon name="trash"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+</ion-content>

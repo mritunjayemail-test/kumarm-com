@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="cancel()">
+      <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+    </ion-buttons>
+    <ion-buttons slot="end" (click)="confirm()">
+      <ion-button>
+        <ion-icon slot="icon-only" name="save-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      {{ data?.HOME_TEXT?.V }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <image-cropper *ngIf="selectedImage"
+    [roundCropper]="roundCropper"
+    [imageBase64]="selectedImage_webPath"
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="aspectRatioWH"
+    [canvasRotation]="canvasRotation"
+    [(transform)]="imageTransform"
+    [allowMoveImage]="false"
+    [resizeToWidth]="resizeToWidth"
+    [cropperMinWidth]="resizeToWidth"
+    [resizeToHeight]="0"
+    format="jpeg"
+    output="base64"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded($event)"
+    (cropperReady)="cropperReady()"
+    (startCropImage)="startCropImage()"
+    (loadImageFailed)="loadImageFailed()"
+    [hideResizeSquares]="false">
+  </image-cropper>
+
+  <ion-grid *ngIf="selectedImage">
+    <ion-row>
+      <ion-col (click)="rotateLeft()">
+        <ion-icon name="arrow-undo-circle-outline" size="large" color="primary"></ion-icon>
+      </ion-col>
+      <ion-col (click)="rotateRight()">
+        <ion-icon name="refresh-circle-outline" size="large" color="primary"></ion-icon>
+
+      </ion-col>
+      <ion-col (click)="flipHorizontal()">
+        <ion-icon name="arrow-redo-circle-outline" size="large" color="primary"></ion-icon>
+
+      </ion-col>
+      <ion-col (click)="flipVertical()">
+        <ion-icon name="arrow-down-circle-outline" size="large" color="primary"></ion-icon>
+      </ion-col>
+      <ion-col (click)="zoomOut()">
+        <ion-icon name="remove-circle-outline" size="large" color="primary"></ion-icon>
+      </ion-col>
+      <ion-col (click)="zoomIn()">
+        <ion-icon name="add-circle-outline" size="large" color="primary"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <div class="w3-display-container">
+    <div class="w3-display-bottomleft w3-padding">
+      <ion-button (click)="cancel()" shape="round" color="danger">Cancel</ion-button>
+    </div>
+    <div class="w3-display-bottomright w3-padding">
+      <ion-button (click)="confirm()" shape="round" color="success">Confirm</ion-button>
+    </div>
+    <p><img alt="Silhouette of mountains" [src]="croppedImage" /></p>
+  </div>
+</ion-content>

@@ -1,0 +1,271 @@
+---
+language:
+  -
+   lang: af
+   full: Afrikaans
+   active: False
+  -
+   lang: sq
+   full: Albanian
+   active: False
+  -
+   lang: am
+   full: Amharic
+   active: False
+  -
+   lang: ar
+   full: Arabic
+   active: False
+  -
+   lang: hy
+   full: Armenian
+   active: False
+  -
+   lang: az
+   full: Azerbaijani
+   active: False
+  -
+   lang: bn
+   full: Bengali
+   active: False
+  -
+   lang: bs
+   full: Bosnian
+   active: False
+  -
+   lang: bg
+   full: Bulgarian
+   active: False
+  -
+   lang: fr
+   full: French
+   active: False
+  -
+   lang: ca
+   full: Catalan
+   active: False
+  -
+   lang: hr
+   full: Croatian
+   active: False
+  -
+   lang: cs
+   full: Czech
+   active: False
+  -
+   lang: da
+   full: Danish
+   active: False
+  -
+   lang: nl
+   full: Dutch
+   active: False
+  -
+   lang: et
+   full: Estonian
+   active: False
+  -
+   lang: en
+   full: English
+   active: True
+  -
+   lang: fi
+   full: Finnish
+   active: False
+  -
+   lang: ka
+   full: Georgian
+   active: False
+  -
+   lang: de
+   full: German
+   active: False
+  -
+   lang: el
+   full: Greek
+   active: False
+  -
+   lang: gu
+   full: Gujarati
+   active: False
+  -
+   lang: ht
+   full: Haitian Creole
+   active: False
+  -
+   lang: ha
+   full: Hausa
+   active: False
+  -
+   lang: he
+   full: Hebrew
+   active: False
+  -
+   lang: hi
+   full: Hindi
+   active: False
+  -
+   lang: hu
+   full: Hungarian
+   active: False
+  -
+   lang: is
+   full: Icelandic
+   active: False
+  -
+   lang: id
+   full: Indonesian
+   active: False
+  -
+   lang: ga
+   full: Irish
+   active: False
+  -
+   lang: it
+   full: Italian
+   active: False
+  -
+   lang: ja
+   full: Japanese
+   active: False
+  -
+   lang: kn
+   full: Kannada
+   active: False
+  -
+   lang: kk
+   full: Kazakh
+   active: False
+  -
+   lang: ko
+   full: Korean
+   active: False
+  -
+   lang: lv
+   full: Latvian
+   active: False
+  -
+   lang: lt
+   full: Lithuanian
+   active: False
+  -
+   lang: mk
+   full: Macedonian
+   active: False
+  -
+   lang: ms
+   full: Malay
+   active: False
+  -
+   lang: ml
+   full: Malayalam
+   active: False
+  -
+   lang: mt
+   full: Maltese
+   active: False
+  -
+   lang: mr
+   full: Marathi
+   active: False
+  -
+   lang: mn
+   full: Mongolian
+   active: False
+  -
+   lang: 'no'
+   full: Norwegian
+   active: False
+  -
+   lang: ps
+   full: Pashto
+   active: False
+  -
+   lang: pl
+   full: Polish
+   active: False
+  -
+   lang: pt
+   full: Portuguese
+   active: False
+  -
+   lang: pa
+   full: Punjabi
+   active: False
+  -
+   lang: ro
+   full: Romanian
+   active: False
+  -
+   lang: ru
+   full: Russian
+   active: False
+  -
+   lang: sr
+   full: Serbian
+   active: False
+  -
+   lang: si
+   full: Sinhala
+   active: False
+  -
+   lang: sk
+   full: Slovak
+   active: False
+  -
+   lang: sl
+   full: Slovenian
+   active: False
+  -
+   lang: so
+   full: Somali
+   active: False
+  -
+   lang: es
+   full: Spanish
+   active: False
+  -
+   lang: sw
+   full: Swahili
+   active: False
+  -
+   lang: sv
+   full: Swedish
+   active: False
+  -
+   lang: ta
+   full: Tamil
+   active: False
+  -
+   lang: te
+   full: Telugu
+   active: False
+  -
+   lang: th
+   full: Thai
+   active: False
+  -
+   lang: tr
+   full: Turkish
+   active: False
+  -
+   lang: uk
+   full: Ukrainian
+   active: False
+  -
+   lang: ur
+   full: Urdu
+   active: False
+  -
+   lang: uz
+   full: Uzbek
+   active: False
+  -
+   lang: vi
+   full: Vietnamese
+   active: False
+  -
+   lang: cy
+   full: Welsh
+   active: False
+...

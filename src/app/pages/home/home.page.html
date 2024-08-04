@@ -1,0 +1,428 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="w3-padding" appEdit [allowEdit]="data?.EDIT" id="HOME_TEXT.V">
+      {{ data?.HOME_TEXT?.V }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <!-- <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="12" size-lg="11">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Card Title</ion-card-title>
+              <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+              Here's a small text description for the card content. Nothing more, nothing less.
+            </ion-card-content>
+          </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+
+  <!-- w3-content defines a container for fixed size centered content,
+  and is wrapped around the whole page content, except for the footer in this example -->
+  <div class="w3-content" style="max-width:1600px">
+    <!-- Header -->
+    <header class="w3-container" id="designers" style="margin-top:15px">
+      <h3 class="w3-xxlarge w3-text-red">
+        <b class="w3-padding" appEdit [allowEdit]="data?.EDIT" id="HOME.NAME.V">
+          {{ data?.HOME?.NAME?.V }}
+        </b>
+      </h3>
+      <hr style="width:50px;border:5px solid red" class="w3-round">
+      <ng-container *ngFor="let ele of data?.HOME?.INFO_HOME; let i=index;">
+        <p><b class="w3-padding" appEdit [allowEdit]="data?.EDIT" id="HOME.INFO_HOME.{{i}}.text.V">
+            {{ ele?.text?.V }}
+          </b>
+          <app-delete-data *ngIf="data?.EDIT" id="HOME.INFO_HOME.{{i}}"></app-delete-data>
+          <app-copy-data *ngIf="data?.EDIT" id="HOME.INFO_HOME.{{i}}"></app-copy-data>
+        </p>
+      </ng-container>
+    </header>
+    <!-- Image header -->
+    <!-- <swiper-container #swiper (afterinit)="swiperReady()" (slidechange)="swiperSlideChanged($event)"
+      [autoplay]="{ delay: 10000 }" [zoom]="false">
+
+      <swiper-slide *ngFor="let ele of data?.HOME?.images; let i=index;">
+        <header class="w3-display-container w3-wide" id="home-{{i}}">
+          <div class="w3-display-topright w3-padding">
+            <app-delete-data id="HOME.images.{{i}}"></app-delete-data>
+            <app-copy-data id="HOME.images.{{i}}"></app-copy-data>
+            <app-image-popmodal *ngIf="data?.EDIT"
+                                id="HOME.images.{{i}}.default"
+                                [icontext]="false"
+                                 [roundCropper]="false"
+                                 [aspectRatioWH]="3840/2160"
+                                 [resizeToWidth]="1600"
+                                 [resizeToHeight]="0">
+            </app-image-popmodal>
+          </div>
+          <div *ngIf="ele?.video">
+            <video width="100%" controls>
+              <source class="w3-image" *ngIf="ele?.value" [src]="ele?.value" type="video/mp4">
+              <source class="w3-image" *ngIf="!ele?.value" [src]="ele?.default" type="video/mp4">
+            </video>
+          </div>
+          <div *ngIf="!ele?.video">
+            <ion-img class="w3-image" *ngIf="ele?.value" [src]="ele?.value" alt="Fashion Blog"> </ion-img>
+            <ion-img class="w3-image" *ngIf="!ele?.value" [src]="ele?.default" alt="Fashion Blog"> </ion-img>
+          </div>
+          <div class="w3-display-left">
+            <h3 class="w3-text-white w3-indigo">
+              <span class="w3-padding" appEdit [allowEdit]="data?.EDIT"
+                id="HOME.images.{{i}}.head.V">
+                {{ ele?.head.V }}</span></h3>
+            <h2 class="w3-text-white w3-hide-small w3-orange">
+              <b class="w3-padding" appEdit [allowEdit]="data?.EDIT" id="HOME.images.{{i}}.sub.V">
+                {{ ele?.sub.V }}
+              </b>
+            </h2>
+            <h6><button class="w3-button w3-orange w3-padding-large w3-large w3-opacity w3-hover-opacity-off"
+                onclick="document.getElementById('subscribe').style.display='block'">SUBSCRIBE</button></h6>
+          </div>
+        </header>
+      </swiper-slide>
+    </swiper-container> -->
+
+    <!-- Grid -->
+    <div class="w3-row w3-border">
+      <!-- Blog entries -->
+      <div class="w3-col l8 s12">
+        <div *ngFor="let ele of data?.HOME?.DETAIL_CARD; let i=index;">
+          <!-- Blog entry -->
+          <div class="w3-container w3-white">
+            <div class="w3-center">
+              <h3 class="w3-padding" appEdit [allowEdit]="data?.EDIT" id="HOME.DETAIL_CARD.{{i}}.title.V">
+                {{ele?.title?.V}}</h3>
+              <h5 class="w3-padding" appEdit [allowEdit]="data?.EDIT" id="HOME.DETAIL_CARD.{{i}}.title_desc.V">
+                {{ele?.title_desc?.V}}</h5>
+            </div>
+            <div class="w3-justify w3-display-container">
+              <video *ngIf="ele?.image?.video" width="100%" controls alt="Girl Hat" class="w3-padding-16">
+                <source [src]="ele?.image?.url" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <img *ngIf="!ele?.image?.video" [src]="ele?.image?.url" alt="Men in Hats" style="width:100%"
+                class="w3-padding-16">
+              <div class="w3-display-topmiddle w3-white w3-padding-large" appEdit [allowEdit]="data?.EDIT"
+                id="HOME.DETAIL_CARD.{{i}}.image_text.V">
+                {{ele?.image_text?.V}}
+              </div>
+              <div *ngIf="data?.EDIT" class="w3-display-left w3-padding">
+                <app-image-popmodal id="HOME.DETAIL_CARD.{{i}}.image.url" [icontext]="false" [roundCropper]="false"
+                  [aspectRatioWH]="3/2" [resizeToWidth]="1024" [resizeToHeight]="0">
+                </app-image-popmodal>
+                <app-video-popmodal id="HOME.DETAIL_CARD.{{i}}.image.url" [icontext]="false">
+                </app-video-popmodal>
+              </div>
+              <div *ngIf="data?.EDIT" class="w3-display-right w3-padding">
+                <app-delete-data id="HOME.DETAIL_CARD.{{i}}"></app-delete-data>
+                <app-copy-data id="HOME.DETAIL_CARD.{{i}}"></app-copy-data>
+              </div>
+            </div>
+            <p class="w3-padding" appEdit [allowEdit]="data?.EDIT" id="HOME.DETAIL_CARD.{{i}}.text1.V">
+              {{ele?.text1?.V}}</p>
+            <p class="w3-padding" appEdit [allowEdit]="data?.EDIT" id="HOME.DETAIL_CARD.{{i}}.text2.V">
+              {{ele?.text2?.V}}</p>
+            <p class="w3-left">
+              <button class="w3-button w3-white w3-border" (click)="likeFunction(this)">
+                <b><i class="fa fa-thumbs-up"></i> Like</b>
+              </button>
+            </p>
+            <p class="w3-right">
+              <button class="w3-button w3-black" (click)="myFunction('demo1')" id="myBtn">
+                <b>Replies &nbsp;</b>
+                <span class="w3-tag w3-white">1</span>
+              </button>
+            </p>
+            <p class="w3-clear"></p>
+            <div class="w3-row w3-margin-bottom" id="demo1" style="display:none">
+              <hr>
+              <div class="w3-col l2 m3">
+                <img src="https://www.w3schools.com/w3images/avatar_smoke.jpg" style="width:90px;">
+              </div>
+              <div class="w3-col l10 m9">
+                <h4>George <span class="w3-opacity w3-medium">May 3, 2015, 6:32 PM</span></h4>
+                <p>Great blog post! Following</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+
+        <!-- Pricing Tables -->
+        <div class="w3-row">
+          <div *ngFor="let ele of data?.HOME?.PRICING; let i=index;">
+            <div class="w3-third">
+              <ul class="w3-ul w3-border w3-white w3-center w3-opacity w3-hover-opacity-off">
+                <li [class]="ele?.color" class="w3-xlarge w3-padding-32" appEdit [allowEdit]="data?.EDIT"
+                  id="HOME.PRICING.{{i}}.plan.V">{{ele?.plan?.V}}</li>
+                <li class="w3-padding-16" appEdit [allowEdit]="data?.EDIT" id="HOME.PRICING.{{i}}.text1.V">
+                  {{ele?.text1?.V}}</li>
+                <li class="w3-padding-16" appEdit [allowEdit]="data?.EDIT" id="HOME.PRICING.{{i}}.text2.V">
+                  {{ele?.text2?.V}}</li>
+                <li class="w3-padding-16" appEdit [allowEdit]="data?.EDIT" id="HOME.PRICING.{{i}}.text3.V">
+                  {{ele?.text3?.V}}</li>
+                <li class="w3-padding-16" appEdit [allowEdit]="data?.EDIT" id="HOME.PRICING.{{i}}.text4.V">
+                  {{ele?.text4?.V}}</li>
+                <li class="w3-padding-16">
+                  <h2><span appEdit [allowEdit]="data?.EDIT"
+                      id="HOME.PRICING.{{i}}.text5">{{ele?.text5}}</span>&nbsp;<span appEdit [allowEdit]="data?.EDIT"
+                      id="HOME.PRICING.{{i}}.text6">{{ele?.text6}}</span></h2>
+                  <span class="w3-opacity" appEdit [allowEdit]="data?.EDIT"
+                    id="HOME.PRICING.{{i}}.text7.V">{{ele?.text7.V}}</span>
+                </li>
+                <li class="w3-light-grey w3-padding-24">
+                  <button [class]="ele?.color" class="w3-button w3-teal w3-padding-large w3-hover-black" appEdit
+                    [allowEdit]="data?.EDIT" id="HOME.PRICING.{{i}}.submit.V">{{ele?.submit.V}}</button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- END BLOG ENTRIES -->
+      </div>
+
+      <!-- About/Information menu -->
+      <div class="w3-col l4">
+        <div *ngFor="let ele of data?.HOME?.HOME_ABOUT; let i=index;">
+          <!-- About Card -->
+          <div class="w3-white">
+            <div class="w3-justify w3-display-container">
+
+              <video width="100%" *ngIf="ele?.video" controls>
+                <source [src]="ele?.url" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <ion-img *ngIf="!ele?.video" [src]="ele?.url"></ion-img>
+
+
+              <!-- <img [src]="ele?.url" alt="Jane" style="width:100%" class="w3-grayscaleMRITUNJAY"> -->
+
+
+
+
+              <div *ngIf="data?.EDIT" class="w3-display-topright w3-padding">
+                <app-image-popmodal id="HOME.HOME_ABOUT.{{i}}.url" [icontext]="false" [roundCropper]="false"
+                  [aspectRatioWH]="3/2" [resizeToWidth]="1024" [resizeToHeight]="0">
+                </app-image-popmodal>
+                <app-video-popmodal id="HOME.HOME_ABOUT.{{i}}.url" [icontext]="false">
+                </app-video-popmodal>
+                <app-delete-data id="HOME.HOME_ABOUT.{{i}}"></app-delete-data>
+                <app-copy-data id="HOME.HOME_ABOUT.{{i}}"></app-copy-data>
+              </div>
+            </div>
+
+            <div class="w3-container w3-black">
+              <h4 class="w3-padding" appEdit [allowEdit]="data?.EDIT" id="HOME.HOME_ABOUT.{{i}}.head.V">
+                {{ele?.head?.V}}</h4>
+              <p class="w3-padding" appEdit [allowEdit]="data?.EDIT" id="HOME.HOME_ABOUT.{{i}}.sub.V">
+                {{ele?.sub?.V}}</p>
+            </div>
+          </div>
+          <hr>
+        </div>
+
+
+        <!-- Posts -->
+        <div class="w3-white">
+          <div class="w3-container w3-black">
+            <h4 class="w3-padding" appEdit [allowEdit]="data?.EDIT" id="HOME.POPULAR_TEXT.V">
+              {{data?.HOME?.POPULAR_TEXT?.V}}</h4>
+          </div>
+          <ul class="w3-ul w3-hoverable w3-white">
+            <div *ngFor="let ele of data?.HOME?.POPULAR; let i=index;">
+              <li class="w3-padding-16">
+                <div class="w3-display-container">
+                  <div *ngIf="data?.EDIT" class="w3-display-topright">
+                    <app-image-popmodal id="HOME.POPULAR.{{i}}.image" [icontext]="false" [roundCropper]="false"
+                      [aspectRatioWH]="4/4" [resizeToWidth]="1024" [resizeToHeight]="0">
+                    </app-image-popmodal>
+                    <!-- <app-video-popmodal id="HOME.POPULAR.{{i}}.image"
+                    [icontext]="false">
+                    </app-video-popmodal> -->
+
+                    <app-delete-data id="HOME.POPULAR.{{i}}"></app-delete-data>
+                    <app-copy-data id="HOME.POPULAR.{{i}}"></app-copy-data>
+
+                  </div>
+                  <img [src]="ele?.image" alt="Image" class="w3-left w3-margin-right"
+                    style="width:50px; border-radius:4px;">
+                </div>
+
+                <span class="w3-large" appEdit [allowEdit]="data?.EDIT"
+                  id="HOME.POPULAR.{{i}}.top.V">{{ele?.top?.V}}</span>
+                <br>
+                <span appEdit [allowEdit]="data?.EDIT" id="HOME.POPULAR.{{i}}.bottom.V">{{ele?.bottom?.V}}</span>
+              </li>
+            </div>
+          </ul>
+        </div>
+        <hr>
+
+
+
+        <!-- Pricing Tables -->
+        <!-- <div class="w3-row">
+          <div *ngFor="let ele of data?.HOME?.PRICING; let i=index;">
+            <div class="w3-third">
+              <ul class="w3-ul w3-border w3-white w3-center w3-opacity w3-hover-opacity-off">
+                <li [class]="ele?.color" class="w3-xlarge w3-padding-32" appEdit [allowEdit]="data?.EDIT"
+                  id="HOME.PRICING.{{i}}.plan.V">{{ele?.plan?.V}}</li>
+                <li class="w3-padding-16" appEdit [allowEdit]="data?.EDIT" id="HOME.PRICING.{{i}}.text1.V">
+                  {{ele?.text1?.V}}</li>
+                <li class="w3-padding-16" appEdit [allowEdit]="data?.EDIT" id="HOME.PRICING.{{i}}.text2.V">
+                  {{ele?.text2?.V}}</li>
+                <li class="w3-padding-16" appEdit [allowEdit]="data?.EDIT" id="HOME.PRICING.{{i}}.text3.V">
+                  {{ele?.text3?.V}}</li>
+                <li class="w3-padding-16" appEdit [allowEdit]="data?.EDIT" id="HOME.PRICING.{{i}}.text4.V">
+                  {{ele?.text4?.V}}</li>
+                <li class="w3-padding-16">
+                  <h2><span appEdit [allowEdit]="data?.EDIT"
+                      id="HOME.PRICING.{{i}}.text5">{{ele?.text5}}</span>&nbsp;<span appEdit [allowEdit]="data?.EDIT"
+                      id="HOME.PRICING.{{i}}.text6">{{ele?.text6}}</span></h2>
+                  <span class="w3-opacity" appEdit [allowEdit]="data?.EDIT"
+                    id="HOME.PRICING.{{i}}.text7.V">{{ele?.text7.V}}</span>
+                </li>
+                <li class="w3-light-grey w3-padding-24">
+                  <button [class]="ele?.color" class="w3-button w3-teal w3-padding-large w3-hover-black" appEdit
+                    [allowEdit]="data?.EDIT" id="HOME.PRICING.{{i}}.submit.V">{{ele?.submit.V}}</button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <hr> -->
+
+
+
+
+        <!-- Advertising -->
+        <div *ngFor="let ele of data?.HOME?.ADVERTISE; let i=index;">
+
+          <div class="w3-white">
+            <div class="w3-container w3-black">
+              <h4 class="w3-padding" appEdit [allowEdit]="data?.EDIT" id="HOME.ADVERTISE.{{i}}.main.V"> {{ele?.main?.V}}
+              </h4>
+            </div>
+
+            <div class="w3-white">
+              <ion-card>
+                <div class="w3-display-topleft w3-white w3-padding" appEdit [allowEdit]="data?.EDIT"
+                  id="HOME.ADVERTISE.{{i}}.image_text.V">
+                  {{ele?.image_text?.V}}
+                </div>
+
+                <div *ngIf="data?.EDIT" class="w3-display-topright w3-padding">
+                  <app-image-popmodal id="HOME.ADVERTISE.{{i}}.url" [icontext]="false" [roundCropper]="false"
+                    [aspectRatioWH]="600/395" [resizeToWidth]="1024" [resizeToHeight]="0">
+                  </app-image-popmodal>
+                  <app-video-popmodal id="HOME.ADVERTISE.{{i}}.url" [icontext]="false">
+                  </app-video-popmodal>
+
+                  <app-delete-data id="HOME.ADVERTISE.{{i}}"></app-delete-data>
+                  <app-copy-data id="HOME.ADVERTISE.{{i}}"></app-copy-data>
+                </div>
+
+                <video width="100%" *ngIf="ele?.video" controls>
+                  <source [src]="ele?.url" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <ion-img *ngIf="!ele?.video" [src]="ele?.url"></ion-img>
+
+
+                <!-- <img alt="Silhouette of mountains" [src]="ele?.url" /> -->
+
+
+                <ion-card-header>
+                  <ion-card-title appEdit [allowEdit]="data?.EDIT"
+                    id="HOME.ADVERTISE.{{i}}.card_title.V">{{ele?.card_title?.V}}</ion-card-title>
+                  <ion-card-subtitle appEdit [allowEdit]="data?.EDIT"
+                    id="HOME.ADVERTISE.{{i}}.card_sub.V">{{ele?.card_sub?.V}}</ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content appEdit [allowEdit]="data?.EDIT" id="HOME.ADVERTISE.{{i}}.card_content.V">
+                  {{ele?.card_content?.V}}
+                </ion-card-content>
+              </ion-card>
+            </div>
+          </div>
+          <hr>
+        </div>
+
+        <ng-container *ngFor="let element of data?.HOME?.images; let i=index;">
+          <ion-card class="speaker-card" *ngIf="element?.active">
+            <video width="100%" *ngIf="element?.video" controls>
+              <source [src]="element?.url" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <ion-img *ngIf="!element?.video" [src]="element?.url"></ion-img>
+            <ion-card-header>
+              <ion-card-title appEdit [allowEdit]="data?.EDIT" id="HOME.images.{{i}}.head.V">
+                {{element?.head?.V}}
+              </ion-card-title>
+
+              <ion-card-subtitle appEdit [allowEdit]="data?.EDIT" id="HOME.images.{{i}}.sub.V">
+                {{element?.sub?.V}}
+              </ion-card-subtitle>
+              <!-- <app-edit-popmodal
+                      [editLocation]="element?.id"
+                      [editValue]="element?.sub?.V">
+                    </app-edit-popmodal> -->
+            </ion-card-header>
+            <ion-card-content appEdit [allowEdit]="data?.EDIT" id="URDU">
+              {{data?.URDU}}
+            </ion-card-content>
+            <!-- <ion-button fill="clear" routerLink="/home/detail/{{element?.id}}">{{element?.id}}</ion-button> -->
+            <app-delete-data *ngIf="data?.EDIT" id="HOME.images.{{i}}"></app-delete-data>
+            <app-copy-data *ngIf="data?.EDIT" id="HOME.images.{{i}}"></app-copy-data>
+            <app-image-popmodal *ngIf="data?.EDIT" id="HOME.images.{{i}}.url" [value]="element?.url" [icontext]="false"
+              [roundCropper]="false" [aspectRatioWH]="3/2" [resizeToWidth]="1024" [resizeToHeight]="0">
+            </app-image-popmodal>
+            <app-video-popmodal *ngIf="data?.EDIT" id="HOME.images.{{i}}.url" [icontext]="false">
+            </app-video-popmodal>
+          </ion-card>
+        </ng-container>
+
+
+
+        <!-- END About/Intro Menu -->
+      </div>
+
+      <!-- END GRID -->
+    </div>
+
+    <!-- END w3-content -->
+  </div>
+
+  <!-- fab -->
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" #fab>
+    <ion-fab-button>
+      <ion-icon name="share-social"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="vimeo" (click)="openSocial('Vimeo', fab)">
+        <ion-icon name="logo-vimeo"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="instagram" (click)="openSocial('Instagram', fab)">
+        <ion-icon name="logo-instagram"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="twitter" (click)="openSocial('Twitter', fab)">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="facebook" (click)="openSocial('Facebook', fab)">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+  <!-- Footer -->
+  <app-footer-car-moving></app-footer-car-moving>
+</ion-content>

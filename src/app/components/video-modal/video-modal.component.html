@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="cancel()">
+      <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+    </ion-buttons>
+    <ion-buttons slot="end" (click)="submitForm()">
+      <ion-button>
+        <ion-icon slot="icon-only" name="save-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      {{ data?.HOME_TEXT?.V }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <ion-grid *ngIf="url">
+    <ion-row class="ion-justify-content-center">
+      <ion-card>
+        <ion-col size="12" size-md="12" size-lg="3">
+          <video width="100%" controls *ngIf="format==='video' && url">
+            <!-- <source  [src]="url" [type]="file.type"> -->
+            <source [src]="url" type="video/ogg">
+            Your browser does not support the video tag.
+          </video>
+          <ion-img [src]="url" *ngIf="format==='image' && url"></ion-img>
+
+          <ion-button (click)="cancel()" shape="round" color="danger">Cancel</ion-button>
+          <ion-button (click)="submitForm()" shape="round" color="success">Confirm</ion-button>
+
+        </ion-col>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

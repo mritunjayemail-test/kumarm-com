@@ -1,0 +1,4 @@
+<ion-button *ngIf="!icontext" class="upload-btn-wrapper" color="success" shape="round" [id]="id">
+  <ion-icon slot="icon-only" name="logo-youtube"></ion-icon>
+  <input type="file" accept="video/mp4,video/x-m4v,video/*" name="video" (change)="onFileChange($event)"/>
+</ion-button>

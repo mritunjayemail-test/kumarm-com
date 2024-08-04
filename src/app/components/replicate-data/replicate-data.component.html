@@ -1,0 +1,15 @@
+<ion-fab slot="fixed" vertical="top" horizontal="center">
+  <ion-fab-button size="small">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+  <ion-fab-list side="start">
+    <ion-fab-button color="danger" (click)="copy_data()" [id]="id">
+      <ion-icon name="copy"></ion-icon>
+    </ion-fab-button>
+  </ion-fab-list>
+  <ion-fab-list side="end">
+    <ion-fab-button color="warning" (click)="delete_data()" [id]="id">
+      <ion-icon name="trash"></ion-icon>
+    </ion-fab-button>
+  </ion-fab-list>
+</ion-fab>

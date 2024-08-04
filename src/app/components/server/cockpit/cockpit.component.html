@@ -1,0 +1,18 @@
+<ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-input label="Server Name"
+      placeholder="Enter text"
+      [(ngModel)]="newServerName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Server Content"
+      placeholder="Enter text"
+      [(ngModel)]="newServerContent"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-button (click)="onAddServer()">Add Server</ion-button>
+      <ion-button (click)="onAddBlueprint()">Add Server Blueprint</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-list>

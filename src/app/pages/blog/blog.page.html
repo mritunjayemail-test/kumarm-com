@@ -1,0 +1,112 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="star"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      {{ data?.BLOG_TEXT?.V }} Blog
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="12" size-lg="7">
+        <swiper-container #swiper (afterinit)="swiperReady()"
+          (slidechange)="swiperSlideChanged($event)"
+          [autoplay]="{ delay: 20000 }"
+          [zoom]="false">
+          <swiper-slide *ngFor="let element of data?.HOME?.images; let i=index;">
+            <ion-card class="speaker-card" color="light">
+              <div class="slide-container">
+                <video width="100%" *ngIf="element?.video" controls >
+                  <source [src]="element?.url" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <ion-img *ngIf="!element?.video" [src]="element?.url"></ion-img>
+                <ion-card-header>
+                  <ion-card-title *ngIf="element?.head?.V">{{element?.head?.V}}
+                  </ion-card-title>
+                  <ion-card-subtitle *ngIf="element?.sub?.V">{{element?.sub?.V}}</ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content>
+                  {{data?.URDU}}
+                </ion-card-content>
+              </div>
+            </ion-card>
+          </swiper-slide>
+        </swiper-container>
+      </ion-col>
+      <ion-col size="12" size-md="12" size-lg="4">
+        <ng-container *ngFor="let element of data?.HOME?.images; let i=index;">
+          <ion-card class="speaker-card" *ngIf="element?.active">
+            <video width="100%" *ngIf="element?.video" controls >
+              <source [src]="element?.url" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <ion-img *ngIf="!element?.video" [src]="element?.url"></ion-img>
+            <ion-card-header >
+            <ion-card-title
+              appEdit
+              [allowEdit]="data?.EDIT"
+              id="HOME.images.{{i}}.head.V">
+              {{element?.head?.V}}
+            </ion-card-title>
+              <ion-card-subtitle
+                appEdit
+                [allowEdit]="data?.EDIT"
+                id="HOME.images.{{i}}.sub.V">
+                {{element?.sub?.V}}
+              </ion-card-subtitle>
+                   <!-- <app-edit-popmodal
+                      [editLocation]="element?.id"
+                      [editValue]="element?.sub?.V">
+                    </app-edit-popmodal> -->
+            </ion-card-header>
+            <ion-card-content appEdit [allowEdit]="data?.EDIT" id="URDU">
+              {{data?.URDU}}
+            </ion-card-content>
+            <ion-button fill="clear"
+                  routerLink="/home/detail/{{element?.id}}">
+                  {{element?.id}}
+            </ion-button>
+            <ion-button fill="clear">{{element?.label}}</ion-button>
+            <app-image-popmodal *ngIf="data?.EDIT"
+            id="HOME.images.{{i}}.url"
+            [value]="element?.url"
+            [roundCropper]="true"
+            [aspectRatioWH]="1280/720"
+            [resizeToWidth]="1024"
+            [resizeToHeight]="0">
+            </app-image-popmodal>
+          </ion-card>
+        </ng-container>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" #fab>
+    <ion-fab-button>
+      <ion-icon name="share-social"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="vimeo" (click)="openSocial('Vimeo', fab)">
+        <ion-icon name="logo-vimeo"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="instagram" (click)="openSocial('Instagram', fab)">
+        <ion-icon name="logo-instagram"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="twitter" (click)="openSocial('Twitter', fab)">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="facebook" (click)="openSocial('Facebook', fab)">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

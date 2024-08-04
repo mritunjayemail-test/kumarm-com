@@ -1,0 +1,61 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      {{ data?.CALL_TEXT?.V }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <app-server-main></app-server-main>
+
+
+  <ion-list>
+    <ion-item-group  *ngFor="let ele of data?.MESSAGE?.chats; let i=index;">
+      <ion-item-divider sticky></ion-item-divider>
+      <ion-item-sliding>
+        <ion-item>
+          <ion-avatar slot="start">
+            <img alt="Silhouette of mountains" src="https://images.unsplash.com/photo-1580927752452-89d86da3fa0a" />
+          </ion-avatar>
+          <ion-label>
+            <h3>{{ele?.sender?.V}}</h3>
+            <h4>
+              {{ele?.text?.V}}
+            </h4>
+          </ion-label>
+        </ion-item>
+        <ion-item-options>
+          <ion-item-option color="favorite">
+            Favorite
+          </ion-item-option>
+          <ion-item-option>
+            Remove
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-item-group>
+  </ion-list>
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col sizeLg="3" sizeMd="6" sizeXs="12" *ngFor="let element of data?.CALL?.widgets; let i=index;">
+        <ion-card>
+          <!-- <img [alt]="element?.title" [src]="element?.imgage" /> -->
+          <ion-card-header>
+            <ion-card-title>{{element?.title?.V}}</ion-card-title>
+            <ion-card-subtitle>{{element?.subtitle?.V}}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            {{ data?.WEBSITE_DETAILS_TEXT?.V }}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <app-footer-car-moving></app-footer-car-moving>
+
+</ion-content>

@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Matrimonial
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-button class="upload-btn-wrapper" shape="round">
+    <ion-icon slot="icon-only" name="logo-youtube"></ion-icon>
+    <input type="file" name="video" (change)="onFileChange($event)"/>
+  </ion-button>
+
+
+  <ion-button color="primary" expand="full" (click)="submitForm()">Upload</ion-button>
+
+
+  <ion-grid *ngIf="url">
+    <ion-row class="ion-justify-content-center">
+      <ion-card>
+        <ion-col size="12" size-md="12" size-lg="3">
+          <video width="100%" controls *ngIf="format==='video' && url">
+            <!-- <source  [src]="url" [type]="file.type"> -->
+            <source [src]="url" type="video/ogg">
+            Your browser does not support the video tag.
+          </video>
+          <ion-img [src]="url" *ngIf="format==='image' && url"></ion-img>
+        </ion-col>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,14 @@
+<ion-button [id]="editLocation">Open Menu</ion-button>
+<ion-popover [trigger]="editLocation" [dismissOnSelect]="true">
+  <ng-template>
+    <ion-content>
+      <ion-list>
+        <ion-item (click)="openModal('edit', editValue)">Edit</ion-item>
+        <ion-item (click)="openModal('add', editValue)">Add</ion-item>
+        <ion-item (click)="openModal('delete', editValue)">Delete</ion-item>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-popover>
+
+  <div>{{ message }}</div>
